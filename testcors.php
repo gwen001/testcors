@@ -20,11 +20,6 @@ function __autoload( $c ) {
 
 	for ($i = 1; $i <= $argc; $i++) {
 		switch ($_SERVER['argv'][$i]) {
-			case '-f':
-				$testcors->setHost( $_SERVER['argv'][$i + 1] );
-				$i++;
-				break;
-
 			case '-h':
 				Utils::help();
 				break;

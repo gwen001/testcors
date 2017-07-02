@@ -15,6 +15,8 @@ class TestCors
 		'www.__PAYLOAD__.net',
 		'http://www.__PAYLOAD__.net',
 		'https://www.__PAYLOAD__.net',
+		'http://__T_HOST__.__PAYLOAD__.net',
+		'https://__T_HOST__.__PAYLOAD__.net',
 		'74.6.50.24',
 		'http://74.6.50.24',
 		'https://74.6.50.24',
@@ -138,13 +140,15 @@ class TestCors
 
 			foreach( $this->getPayloads() as $p )
 			{
-				//echo $p."\n";
 				$cors = 0;
+				$p = str_replace( '__T_HOST__', $h, $p );
+				//echo $p."\n";
 				
 				$r = new HttpRequest();
 				$r->setRedirect( $this->redirect );
 				$r->setSsl( $this->ssl );
 				$r->setHost( $h );
+				//$r->setMethod( HttpRequest::METHOD_POST );
 				$r->setUrl( '/' );
 				$r->setHeader( $p, 'Origin' );
 				//var_dump( $r );
@@ -226,8 +230,10 @@ class TestCors
 
 	private function preparePayloads()
 	{
+		$uniqid = uniqid();
+		
 		foreach( self::T_PAYLOADS as $p ) {
-			$p = str_replace( '__PAYLOAD__', uniqid(), $p );
+			$p = str_replace( '__PAYLOAD__', $uniqid, $p );
 			$this->t_payloads[] = $p;
 		}
 

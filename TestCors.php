@@ -20,8 +20,8 @@ class TestCors
 		'74.6.50.24',
 		'http://74.6.50.24',
 		'https://74.6.50.24',
-		'https://fiddle.jshell.net/',
-		'https://codepen.io/',
+		'https://fiddle.jshell.net',
+		'https://codepen.io',
 	);
 
 	/**
